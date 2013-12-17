@@ -1,0 +1,171 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7 ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>	<html class="no-js  lt-ie10 lt-ie9 lt-ie8 ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>	<html class="no-js lt-ie10 lt-ie9 ie8" lang="en"> <![endif]-->
+<!--[if IE 9]>	<html class="no-js lt-ie10 ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es"> <!--<![endif]-->
+<head> 
+	<meta charset="UTF-8">
+	<title>Pipe</title>
+	
+	<link rel="stylesheet" type="text/css" href="http://static.mlstatic.com/org-img/ch/ui/0.13.5/chico-mesh.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/meli.min.css">
+
+	<script>
+
+		// Chunked
+		function sendRequest(url,container,callback) {
+			var xhr = createXMLHTTPObject();
+			if (!xhr) return;
+			xhr.open("GET", url, true);
+			// if(false && typeof xhr.onprogress !== 'undefined') {
+			// 	xhr.onprogress = function(){
+			// 		console.log(xhr.responseText)
+			// 		var ele = document.getElementById(container);
+			// 		//var emptyEle = document.createElement("div");
+			// 		//emptyEle.innerHTML = xhr.responseText;
+			// 		//ele.appendChild(emptyEle);
+			// 		ele.innerHTML = xhr.responseText;
+			// 	}
+			// 	if(this.readyState == 4) return;
+			// 	xhr.send();
+			// }else {
+			xhr.onreadystatechange = function(e) {
+			  if (this.readyState > 2 && this.status == 200) {
+			    var ele = document.getElementById(container);
+				ele.innerHTML = this.responseText;
+				console.log(xhr.responseText)
+			  }
+			};
+			if(this.readyState == 4) return;
+			xhr.send();
+			//}
+			
+		}
+
+		var XMLHttpFactories = [
+			function () {return new XMLHttpRequest()},
+			function () {return new ActiveXObject("Msxml2.XMLHTTP")},
+			function () {return new ActiveXObject("Msxml3.XMLHTTP")},
+			function () {return new ActiveXObject("Microsoft.XMLHTTP")}
+		];
+
+		function createXMLHTTPObject() {
+			var xmlhttp = false;
+			for (var i=0;i<XMLHttpFactories.length;i++) {
+				try {
+					xmlhttp = XMLHttpFactories[i]();
+				}
+				catch (e) {
+					continue;
+				}
+				break;
+			}
+			return xmlhttp;
+		}
+
+		// Get widget
+		sendRequest('/chunked?' + Math.random(),'explore');
+
+	</script>
+
+	<style>
+		body {
+			max-width: 100%;
+			margin: 0 auto;
+			padding: 70px 0 0;
+		}
+		.ml-footer {
+			position: absolute;
+			bottom: 0; left: 0; right: 0;
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<!-- HEADER -->
+
+	<header class="ml-header">
+		
+		<div class="ml-header-inner">
+			
+			<h1 class="ml-logo es">
+				MercadoLibre - Donde compras y vendes de todo
+			</h1>
+
+			<form class="ml-search ml-search-categ" id="formSearch" action="http://www.mercadolibre.com.ar/jm/search" method="get" role="search">
+				<input type="text" id="query" name="as_word" max-length="120" autocomplete="off" autofocus />
+
+				<!-- Only for HomesCateg and Search -->
+				<!-- Set value of check!  -->
+				<p id="mlCategory" class="ml-category" title="Solo en Accesorios">
+					<input type="checkbox" id="categorySearch" name="as_categ_id" value="" />
+					<label for="categorySearch">Solo en Accesorios Accesorios Accesorios</label>
+				</p>
+				<!-- **** -->
+
+				<button type="submit" class="ml-btn">
+					<span class="ch-hide">Buscar</span>
+					<i class="ml-icon ch-icon-search"></i>
+				</button>
+
+				<!-- With component of chicoUI, remove this tag -->
+				<div id="autosug_div"></div>
+
+			</form>
+			<!-- <div class="ml-sell">
+				<a rel="nofollow" href="#" class="ml-btn">Vender</a>
+			</div> -->
+			<nav class="ml-navigation">
+				<ul>
+					<!-- User user -->
+					<!-- For Ipad version remove iframe-modal class -->
+					<!-- Logged > NOT -->
+					<li id="register" class="ml-register">
+						<a rel="nofollow" href="https://registration.mercadolibre.com.ar/registration/" class="iframe-modal" data-modal:dinamic="true" data-modal:width="645" data-modal:height="360" data-modal:url="https://registration.mercadolibre.com.ar/registration/?mode=lite">Regístrate</a>
+					</li>
+					<li id="login" class="ml-login">
+						<a rel="nofollow" href="https://www.mercadolibre.com/jms/mla/lgz/login" class="iframe-modal" data-modal:width="645" data-modal:height="360" data-modal:url="https://www.mercadolibre.com/jms/mla/lgz/login/showFormModal?go=http://labs.mercadolibre.com.ar:3000/logged.html" data-modal:dinamic="true">Ingresa</a>
+					</li>
+					<!-- End user user -->
+					<li class="ml-sell">
+						<a rel="nofollow" href="#">Vender</a>
+					</li>
+					<li class="ml-help">
+						<a href="#" title="Ayuda" class="ml-icon ch-icon-question-sign">Ayuda</a>
+					</li>
+				</ul>
+			</nav>
+
+		</div>
+
+	</header>
+
+	<!-- APPLICATION -->
+	<div id="main" class="ml-main" role="main">
+		<div id="explore" style="margin:0 0 30px"></div>
+		<div id="information" style="margin:0 0 30px"></div>
+		<div id="discovery" style="margin:0 0 30px"></div>
+	</div>
+
+
+	<!-- FOOTER -->
+	<footer class="ml-footer" role="contentinfo">
+
+		<div class="ml-inner-footer">
+			<div class="ml-footer-legal">
+				Copyright © 1999-2013 MercadoLibre S.R.L.
+				<ul class="ml-links">
+					<li><a href="#">Términos y Condiciones</a></li>
+					<li><a href="#">Políticas de Privacidad</a></li>
+					<li><a href="#">Ayuda</a></li>
+				</ul>
+			</div>
+		</div>
+
+	</footer>
+
+</body>
+</html>
