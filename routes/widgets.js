@@ -2,7 +2,7 @@ exports.widgets = function(req, res) {
 	res.setHeader('Transfer-Encoding', 'chunked');
 	res.setHeader('Content-type', 'text/javascript');
 	
-	var html = 'Pipe.process({"html":{"element":"explore","data":"<h1>1</h1>"},"js":[{"type":"external", "value":"http://static.mlstatic.com/org-img/ch/ui/0.13.4/chico-jquery.min.js"}, {"type":"inline", "value":"$(\'body\').css(\'background\', \'yellow\');"}]});'
+	var html = 'Pipe.process({"html":{"element":"explore","data":"<h1>1</h1>"},"js":[{"type":"external", "value":"http://static.mlstatic.com/org-img/ch/ui/0.13.4/chico-jquery.min.js?nocache2"}, {"type":"inline", "value":"$(\'body\').css(\'background\', \'yellow\');"}]});'
     res.write(html);
 
 	// Response 1

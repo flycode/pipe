@@ -41,7 +41,10 @@
 
 		d.innerHTML = dom.data;
 
-		e.appendChild(d.firstChild);
+
+		while( d.hasChildNodes() ) {
+			e.appendChild(d.removeChild(d.firstChild));
+		}
 	}
 	
 	function processCss(css) {
