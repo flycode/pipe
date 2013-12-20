@@ -1,7 +1,7 @@
 (function Pipe(window) {
 	'use strict';
 
-	var _buffer =  null,
+	var buffer =  new Object(),
 		head = document.getElementsByTagName('head')[0];
 
 	function createElement(tag) {
@@ -21,7 +21,7 @@
 				processHtml(data.html);
 			}
 		} catch(e) {console.log(e);}
-		try {
+		// try {
 			if( data.js ) {
 				if( data.js instanceof Array ) {
 					for( var i = 0; i < data.js.length; i++ ) {
@@ -31,7 +31,7 @@
 					processJs(data.js);
 				}
 			}
-		} catch(e) { console.log(e);}
+		// } catch(e) { console.log(e);}
 		
 	}
 	
@@ -59,13 +59,12 @@
 			var that = this;
 			JcorsLoader.load(function() { globalEval(obj.value); });
 		} else {
-			JcorsLoader.load(obj.value);
-			// var s = this.createElement('script');
+			var h = hash(obj.value);
 
-			// s.type = 'text/javascript';
-			// s.src = obj.value;
-
-			// this.head.appendChild(s);
+			if( buffer[h] != true ) {
+				JcorsLoader.load(obj.value);
+				buffer[h] = true;
+			}
 		}
 	}
 
@@ -78,7 +77,7 @@
 	}
 
 	function hash(value) {
-	    var hash = 0, i, c;
+	    var hash = 0, i, c, l;
 	    if (value.length == 0) return hash;
 	    for (i = 0, l = value.length; i < l; i++) {
 	        c = value.charCodeAt(i);
