@@ -13,12 +13,12 @@ exports.widgets = function(req, res) {
 
 	// Response 2
 	setTimeout(function() {
-		var test2 = 'Pipe.process({"html":{"element":"discovery", "data":"<h1>3</h1>"}});'
+		var test2 = 'Pipe.process({"html":{"element":"discovery", "data":"<h1>3</h1><img src=\\"http://victorz.files.wordpress.com/2009/05/uhdv.gif?frutaloca\\" />"}});'
     	res.write(test2);
 	},3000);
 
 	// Response 3
-	setTimeout(function(){
+	setTimeout(function() {
 		var test3 = 'Pipe.process({"html":{"element":"discovery", "data":"<h1>4</h1>"}, "css":"/css/test.css"});'
     	res.write(test3);
 

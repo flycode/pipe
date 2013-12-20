@@ -16,12 +16,14 @@
 		if( data.css ) {
 			processCss(data.css);
 		}
+		
 		try {
 			if( data.html ) {
 				processHtml(data.html);
 			}
-		} catch(e) {console.log(e);}
-		// try {
+		} catch(e) {}
+
+		try {
 			if( data.js ) {
 				if( data.js instanceof Array ) {
 					for( var i = 0; i < data.js.length; i++ ) {
@@ -31,7 +33,7 @@
 					processJs(data.js);
 				}
 			}
-		// } catch(e) { console.log(e);}
+		 } catch(e) {}
 		
 	}
 	
